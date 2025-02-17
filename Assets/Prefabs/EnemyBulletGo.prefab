@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6448041930962948489}
   m_Layer: 0
   m_Name: EnemyBulletGo
-  m_TagString: Untagged
+  m_TagString: EnemyBulletTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

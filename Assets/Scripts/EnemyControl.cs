@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     float speed;
+    public GameObject explosion; // this is our prefab
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +30,21 @@ public class EnemyControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        // Detect collision of the enemy ship with the player ship, or with a player's bullet
+        if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag"))
+        {
+            PlayExplosion();
+            Destroy(gameObject); // Destroy this enemy ship
+        }
+    }
+
+    void PlayExplosion()
+    {
+        GameObject explosionInstance = Instantiate(explosion);
+        explosionInstance.transform.position = transform.position;
     }
 }

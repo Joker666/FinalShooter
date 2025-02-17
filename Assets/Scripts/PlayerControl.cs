@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerBullet; // this is our prefab
     public GameObject bulletPosition1; // this is the position where the bullet 1 will be instantiated
     public GameObject bulletPosition2; // this is the position where the bullet 2 will be instantiated
+    public GameObject explosion; // this is our prefab
     public float bulletSpeed;
 
 
@@ -68,5 +69,21 @@ public class PlayerControl : MonoBehaviour
 
         // Update the player's position
         transform.position = pos;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Detect collision of the player ship with an enemy ship or with an enemy bullet
+        if ((collision.tag == "EnemyShipTag") || (collision.tag == "EnemyBulletTag"))
+        {
+            PlayerExplosion();
+            Destroy(gameObject); // Destroy the player's ship
+        }
+    }
+
+    void PlayerExplosion()
+    {
+        GameObject explosionInstance = Instantiate(explosion);
+        explosionInstance.transform.position = transform.position;
     }
 }

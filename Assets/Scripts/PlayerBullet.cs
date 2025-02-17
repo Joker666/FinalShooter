@@ -30,4 +30,13 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        // Detect collision of the player's bullet with the enemy ship
+        if (col.tag == "EnemyShipTag")
+        {
+            Destroy(gameObject); // Destroy the bullet
+        }
+    }
 }

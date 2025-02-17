@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemySpawner;
     public GameObject GameOverGO;
     public GameObject scoreUITextGO;
+    public GameObject TimeCounterGo;
     private GameState gameState;
 
     public enum GameState
@@ -47,11 +48,14 @@ public class GameManager : MonoBehaviour
                 playButton.SetActive(false);
                 playerShip.SetActive(true);
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
+                TimeCounterGo.GetComponent<TimeCounter>().StartCounter();
+
                 break;
             case GameState.GameOver:
                 playerShip.SetActive(false);
                 GameOverGO.SetActive(true);
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+                TimeCounterGo.GetComponent<TimeCounter>().StopCounter();
 
                 // Chaneg to opening state after 5 seconds
                 Invoke("changeToOpeningState", 5f);

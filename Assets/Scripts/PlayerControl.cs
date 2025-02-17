@@ -1,23 +1,28 @@
 using UnityEngine;
 
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControl : MonoBehaviour
 {
-
+    public GameObject gameManager;
     public GameObject playerBullet; // this is our prefab
     public GameObject bulletPosition1; // this is the position where the bullet 1 will be instantiated
     public GameObject bulletPosition2; // this is the position where the bullet 2 will be instantiated
     public GameObject explosion; // this is our prefab
-    public float bulletSpeed;
 
+    public TextMeshProUGUI livesText;
+    const int MAX_LIVES = 3;
+    int lives;
 
     public float speed;
 
     // Use this for initialization
     void Start()
     {
-
+        lives = MAX_LIVES;
+        livesText.text = lives.ToString();
     }
 
     // Update is called once per frame
@@ -77,7 +82,15 @@ public class PlayerControl : MonoBehaviour
         if ((collision.tag == "EnemyShipTag") || (collision.tag == "EnemyBulletTag"))
         {
             PlayerExplosion();
-            Destroy(gameObject); // Destroy the player's ship
+
+            lives--; // decrease the number of lives
+            livesText.text = lives.ToString(); // update the lives display
+
+            if (lives == 0)
+            {
+                // Change game state to game over state
+                gameManager.GetComponent<GameManager>().updateGameState(GameManager.GameState.GameOver);
+            }
         }
     }
 

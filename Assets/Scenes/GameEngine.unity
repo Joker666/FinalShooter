@@ -577,6 +577,7 @@ MonoBehaviour:
   GameOverGO: {fileID: 279436227}
   scoreUITextGO: {fileID: 548642147}
   TimeCounterGo: {fileID: 1744414571}
+  GameTitleGO: {fileID: 981226385}
 --- !u!4 &307886742
 Transform:
   m_ObjectHideFlags: 0

@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
         maxSpawnRateInSeconds = 5f;
 
         Invoke(nameof(SpawnEnemy), maxSpawnRateInSeconds);
-        InvokeRepeating(nameof(IncreaseSpawnRate), 0f, 30f);
+        InvokeRepeating(nameof(IncreaseSpawnRate), 0f, 10f);
     }
 
     public void UnscheduleEnemySpawner()

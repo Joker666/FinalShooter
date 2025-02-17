@@ -50,7 +50,7 @@ public class EnemyBullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         // Detect collision of the enemy's bullet with the player ship
-        if (col.tag == "PlayerShipTag")
+        if (col.CompareTag("PlayerShipTag"))
         {
             Destroy(gameObject); // Destroy the bullet
         }

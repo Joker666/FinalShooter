@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c5e312a78875746949603c02e1fb98b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - starGO: {fileID: 6512432013728176054, guid: ee7904c0eac8f423fac64a3cfd6d08ad, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

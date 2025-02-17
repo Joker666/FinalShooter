@@ -21,8 +21,14 @@ public class PlayerControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+    }
+
+    public void init()
+    {
         lives = MAX_LIVES;
         livesText.text = lives.ToString();
+        transform.position = new Vector2(0, 0);
     }
 
     // Update is called once per frame

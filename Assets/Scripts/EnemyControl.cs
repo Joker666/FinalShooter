@@ -4,11 +4,13 @@ public class EnemyControl : MonoBehaviour
 {
     float speed;
     public GameObject explosion; // this is our prefab
+    GameObject gameScore;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 2f;
+        gameScore = GameObject.FindGameObjectWithTag("ScoreTextTag");
     }
 
     // Update is called once per frame
@@ -38,6 +40,10 @@ public class EnemyControl : MonoBehaviour
         if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag"))
         {
             PlayExplosion();
+
+            // Add 100 points to the score
+            gameScore.GetComponent<GameScore>().Score += 100;
+
             Destroy(gameObject); // Destroy this enemy ship
         }
     }

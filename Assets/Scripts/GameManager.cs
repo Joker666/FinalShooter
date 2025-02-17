@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playButton;
     public GameObject playerShip;
+    public GameObject enemySpawner;
+    public GameObject GameOverGO;
     private GameState gameState;
 
     public enum GameState
@@ -34,14 +36,20 @@ public class GameManager : MonoBehaviour
             case GameState.Opening:
                 playButton.SetActive(true);
                 playerShip.SetActive(false);
+                GameOverGO.SetActive(false);
                 break;
             case GameState.Gameplay:
                 playButton.SetActive(false);
                 playerShip.SetActive(true);
+                enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 break;
             case GameState.GameOver:
-                playButton.SetActive(true);
                 playerShip.SetActive(false);
+                GameOverGO.SetActive(true);
+                enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+
+                // Chaneg to opening state after 5 seconds
+                Invoke("changeToOpeningState", 5f);
                 break;
         }
     }
@@ -49,5 +57,10 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         updateGameState(GameState.Gameplay);
+    }
+
+    public void changeToOpeningState()
+    {
+        updateGameState(GameState.Opening);
     }
 }
